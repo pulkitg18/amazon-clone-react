@@ -1,0 +1,49 @@
+.orders {
+  padding: 20px 80px;
+}
+
+.orders > h1 {
+  margin: 30px 0;
+}
+.orders__error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.orders__errorHeading {
+  font-size: 4rem;
+}
+
+.orders__amzStyleButton {
+  outline-width: 0;
+  padding: 5px 10px;
+  background-color: #f0c14b;
+  border: 1px solid;
+  margin: 5px;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111111;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.orders__amzStyleButton {
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  .orders {
+    padding-top: 180px;
+  }
+  .order__headBar {
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+
+  .orders__success {
+    align-items: center;
+    justify-content: center;
+  }
+}
