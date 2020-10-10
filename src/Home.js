@@ -8,10 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useStateValue } from "./StateProvider";
 
 const promoImages = [
-  "https://images-eu.ssl-images-amazon.com/images/G/31/img19/Wireless/PrimeDay/Xiaomi/MiStore/Revised/b._CB1198675309_.jpg",
-  "https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg",
-  "https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonPay/PrimeRewards/LP_Revamp/PC_Header_Banner._CB468631809_.jpg",
-  "https://images-eu.ssl-images-amazon.com/images/G/31/prime/PEX/PeX-Top-PC-1500X375.jpg",
+  "https://images-eu.ssl-images-amazon.com/images/G/31/img20/Wireless/SamsungM/Family/M31prime/GW_9thOCT/V259540125_IN_WLME_SamsungM31Prime_DesktopTallHero_1500x600_1._CB418517175_.jpg",
+  "https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/jupiter20/teaser2/GW/6-Desktop-Hero1x_English_3000x1200n._CB403509617_.jpg",
+  "https://images-eu.ssl-images-amazon.com/images/G/31/img17/Home/LA/CBCC_PC_hero/3_BAU_CBCC_HeroPC_1500x600._CB403630975_.jpg",
+  "https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonDevices/GW/Introduction._CB403669933_.jpg",
+  "https://images-eu.ssl-images-amazon.com/images/G/31/img19/Luggage/Dec/WRS/GW_PC_BUNK_1500x600._CB418522199_.jpg",
+  "https://images-eu.ssl-images-amazon.com/images/G/31/vgsw2020/Chetanbhagat_1500x600_1x._CB403107293_.jpg",
+  "https://images-eu.ssl-images-amazon.com/images/G/31/img20/AmazonBrands/Space/XCM_Manual_1272222_1396746_in_la_hero_oct_1500x600_in-en_951a7c53-c507-4ee1-8123-74efb8de6344._CB418528541_.jpg"
 ];
 
 function Home() {
