@@ -7,7 +7,9 @@
 }
 
 .home__row {
-  display: flex;
+  display: grid;
+
+  align-items: center;
   z-index: 1;
   margin-left: 5px;
   margin-right: 5px;
@@ -19,12 +21,30 @@
   margin-bottom: -150px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
-
+.main-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.parent-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 320px);
+  gap: 70px;
+  justify-content: center;
+  padding-bottom: 50px;
+}
 @media only screen and (max-width: 500px) {
   .home__row {
     flex-direction: column;
   }
+  .parent-wrap {
+    display: flex;
+    flex-direction: column;
+  }
 
+  .main-container {
+    width: 250px;
+    margin: 0 auto;
+  }
   .home {
     position: relative;
     top: 140px;

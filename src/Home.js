@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Product from "./Product";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useStateValue } from "./StateProvider";
+import { db } from "./firebase";
 
 const promoImages = [
   "https://images-eu.ssl-images-amazon.com/images/G/31/img20/Wireless/SamsungM/Family/M31prime/GW_9thOCT/V259540125_IN_WLME_SamsungM31Prime_DesktopTallHero_1500x600_1._CB418517175_.jpg",
@@ -14,11 +14,21 @@ const promoImages = [
   "https://images-eu.ssl-images-amazon.com/images/G/31/img19/AmazonDevices/GW/Introduction._CB403669933_.jpg",
   "https://images-eu.ssl-images-amazon.com/images/G/31/img19/Luggage/Dec/WRS/GW_PC_BUNK_1500x600._CB418522199_.jpg",
   "https://images-eu.ssl-images-amazon.com/images/G/31/vgsw2020/Chetanbhagat_1500x600_1x._CB403107293_.jpg",
-  "https://images-eu.ssl-images-amazon.com/images/G/31/img20/AmazonBrands/Space/XCM_Manual_1272222_1396746_in_la_hero_oct_1500x600_in-en_951a7c53-c507-4ee1-8123-74efb8de6344._CB418528541_.jpg"
+  "https://images-eu.ssl-images-amazon.com/images/G/31/img20/AmazonBrands/Space/XCM_Manual_1272222_1396746_in_la_hero_oct_1500x600_in-en_951a7c53-c507-4ee1-8123-74efb8de6344._CB418528541_.jpg",
 ];
 
 function Home() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [productsList, setProductsList] = useState([]);
+
+  useEffect(() => {
+    db.collection("products").onSnapshot((snapshot) => {
+      setProductsList(
+        snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+      );
+    });
+  }, []);
+
+  console.log("products", productsList);
 
   const notify = (type) => {
     if (type == "success") {
@@ -45,24 +55,40 @@ function Home() {
   };
 
   return (
-    <div className="home">
-      <ToastContainer />
-      <div className="home__container">
-        <Carousel
-          className="home__image"
-          autoPlay={true}
-          showThumbs={false}
-          swipeable={true}
-          infiniteLoop={true}
-        >
-          {promoImages.map((_, index) => (
-            <div key={index}>
-              <img src={promoImages[index]} />
-            </div>
+    <>
+      <div className="home">
+        <ToastContainer />
+        <div className="home__container">
+          <Carousel
+            className="home__image"
+            autoPlay={true}
+            showThumbs={false}
+            swipeable={true}
+            infiniteLoop={true}
+          >
+            {promoImages.map((_, index) => (
+              <div key={index}>
+                <img src={promoImages[index]} />
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+      <div className="main-container">
+        <div className="parent-wrap">
+          {productsList.map((products) => (
+            <Product
+              key={products.id}
+              id={products.data.id}
+              title={products.data.title}
+              price={products.data.price}
+              rating={products.data.rating}
+              image={products.data.image}
+              discription={products.data.description}
+              notify={notify}
+            />
           ))}
-        </Carousel>
 
-        <div className="home__row">
           <Product
             id="12321341"
             title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback"
@@ -90,9 +116,7 @@ function Home() {
               </p>
             }
           />
-        </div>
 
-        <div className="home__row">
           <Product
             id="4903850"
             title="Fitbit FB507BKBK Versa 2 Health & Fitness Smartwatch with Heart Rate, Music, Alexa Built-in, Sleep & Swim Tracking, Black/Carbon, One Size (S & L Bands Included) (Black/Carbon)"
@@ -117,9 +141,7 @@ function Home() {
             image="https://images-na.ssl-images-amazon.com/images/I/71TJA%2BsJv2L._SL1500_.jpg"
             notify={notify}
           />
-        </div>
 
-        <div className="home__row">
           <Product
             id="90829332"
             title="Samsung 34-inch (86.40cm) Curved Monitor- 21:9 Ultrawide QLED, Thunderbolt 3 Port- LC34J791WTWXXL"
@@ -130,7 +152,7 @@ function Home() {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

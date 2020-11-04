@@ -3,3 +3,12 @@
   flex-direction: column;
   min-height: 100vh;
 }
+
+.addItem {
+  display: flex;
+  justify-content: center;
+}
+.addItem__input {
+  flex-direction: column;
+  width: 50vh;
+}
