@@ -24,8 +24,8 @@
 .env.test.local
 .env.production.local
 
-.package.json
-.package-lock.json
+/package.json
+/package-lock.json
 
 
 npm-debug.log*
